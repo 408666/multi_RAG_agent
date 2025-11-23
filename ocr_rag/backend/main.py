@@ -74,7 +74,7 @@ class MessageRequest(BaseModel):
     model: str = Field(default="deepseek-chat", description="使用的模型")
     knowledge_base: str = Field(default="default", description="知识库名称")
     session_id: Optional[str] = Field(default=None, description="可选：会话 ID，用于会话持久化")
-
+# 响应模型（支持多模态）
 class MessageResponse(BaseModel):
     content: str
     role: str
