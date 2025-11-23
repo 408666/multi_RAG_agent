@@ -1,0 +1,83 @@
+### Root .gitignore - Recommended defaults for this project
+# This file centralizes ignore rules for Python, Node, IDEs, and generated files.
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.ropeproject
+# Coverage and test caches
+.coverage
+coverage/
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# ----- Conda -----
+conda-meta/
+*.conda
+
+# ----- Node -----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+build/
+.vite/
+
+# ----- JetBrains IDEs (PyCharm/IntelliJ) -----
+# Keep shared project settings (inspectionProfiles, modules.xml, misc.xml)
+/.idea/inspectionProfiles/
+/.idea/modules.xml
+/.idea/multi_RAG_agent.iml
+/.idea/misc.xml
+# Ignore user-specific workspace and local files
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/shelf/
+/.idea/httpRequests/
+/.idea/dataSources/
+/.idea/dataSources.local.xml
+/.idea/.gitignore
+/.idea/codestyles/
+/.idea/caches/
+# ignore plugin user state files
+/.idea/copilot.data.migration.*.xml
+
+# ----- Logs -----
+logs/
+*.log
+
+# ----- Environment files -----
+.env
+.env.*
+.env.local
+
+# ----- OS files -----
+.DS_Store
+Thumbs.db
+
+# ----- Packaging / distribution -----
+dist/
+build/
+*.egg-info/
+*.egg
+
+# ----- Misc -----
+.pytest_cache/
+coverage/
+coverage.xml
+/.idea/*-task-local.xml
+
+# End of recommended .gitignore

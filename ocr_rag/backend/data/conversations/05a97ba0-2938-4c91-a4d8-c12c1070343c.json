@@ -1,0 +1,21 @@
+{
+  "id": "05a97ba0-2938-4c91-a4d8-c12c1070343c",
+  "title": "Git学习资源推荐",
+  "metadata": {},
+  "created_at": "2025-11-22T23:11:44.636073",
+  "updated_at": "2025-11-22T23:38:54.626567",
+  "messages": [
+    {
+      "role": "user",
+      "content": "如何学习git使用？请给出一些学习资源链接",
+      "content_blocks": [],
+      "timestamp": "2025-11-22T23:38:07.634215"
+    },
+    {
+      "role": "assistant",
+      "content": "## Git学习资源推荐\n\n### 要点总结\n学习Git可以从官方文档、中文教程和交互式平台入手，建议按照基础概念→常用命令→分支管理→团队协作的顺序循序渐进。\n\n### 推荐学习资源\n\n**1. 官方文档与权威资源**\n- Git官方文档：https://git-scm.com/doc\n- Git官方教程：https://git-scm.com/book/zh/v2\n- GitHub官方学习资源：https://docs.github.com/zh/get-started\n\n**2. 优质中文教程**\n- 廖雪峰Git教程：https://liaoxuefeng.com/books/git\n  - 最适合零基础入门，讲解通俗易懂\n- 菜鸟教程Git：http://www.runoob.com/git/git-tutorial.html\n  - 包含基础操作和完整命令手册\n- W3Cschool Git教程：https://www.w3cschool.cn/git/git-tutorial.html\n\n**3. 交互式学习平台**\n- GitHub Learning Lab：https://lab.github.com/\n- GitKraken Learn Git：https://www.gitkraken.com/learn/git\n- Codecademy Git课程：https://www.codecademy.com/learn/learn-git\n\n**4. 实践项目资源**\n- GitHub官方练习仓库\n- Git可视化工具：SourceTree、GitKraken\n- 在线练习平台：Learn Git Branching\n\n### 学习建议\n1. **入门阶段**：先学习基本概念（版本控制、仓库、提交、分支）\n2. **实践阶段**：创建个人项目练习常用命令\n3. **进阶阶段**：学习分支管理、合并冲突解决\n4. **协作阶段**：了解GitHub/GitLab团队协作流程\n\n建议从廖雪峰教程开始，配合官方文档查阅，通过实际项目练习巩固知识。",
+      "references": [],
+      "timestamp": "2025-11-22T23:38:50.566813"
+    }
+  ]
+}

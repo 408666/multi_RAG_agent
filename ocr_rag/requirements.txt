@@ -1,0 +1,30 @@
+# LangChain 1.0 核心包
+langchain>=1.0.0a1
+langchain-core>=1.0.0a1
+langchain-openai>=1.0.0a1
+
+# Web 框架
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# CORS 支持
+fastapi-cors==0.0.6
+
+# 环境变量管理
+python-dotenv==1.0.0
+
+# 数据验证
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# 异步 HTTP 客户端
+httpx==0.25.2
+
+# JSON 处理
+orjson==3.9.10
+
+# 日志
+loguru==0.7.2
+
+# 类型提示
+typing-extensions==4.8.0 
