@@ -3,6 +3,8 @@ import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { 
   MessageSquare, 
   FileText, 
@@ -38,6 +40,8 @@ interface 侧边栏Props {
   onSettings: () => void;
   onHelp: () => void;
   onDeleteConversation?: (id: string) => void;
+  知识库: string;
+  on知识库Change: (value: string) => void;
 }
 
 export function 侧边栏({
@@ -49,7 +53,9 @@ export function 侧边栏({
   onNewConversation,
   onSettings,
   onHelp,
-  onDeleteConversation
+  onDeleteConversation,
+  知识库,
+  on知识库Change
 }: 侧边栏Props) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
@@ -119,26 +125,86 @@ export function 侧边栏({
           <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
             功能模块
           </h3>
-          {menuItems.map((item) => (
-            <Button
-              key={item.id}
-              variant="ghost"
-              className="w-full justify-start h-10 relative group"
-              onMouseEnter={() => setHoveredItem(item.id)}
-              onMouseLeave={() => setHoveredItem(null)}
-            >
-              <item.icon className={cn("w-4 h-4", item.color)} />
-              <span className="ml-3 flex-1 text-left">{item.label}</span>
-              {item.badge && (
-                <Badge variant="secondary" className="ml-2 h-5 text-xs">
-                  {item.badge}
-                </Badge>
-              )}
-              {hoveredItem === item.id && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-md" />
-              )}
-            </Button>
-          ))}
+          {menuItems.map((item) => {
+            if (item.id === 'knowledge') {
+              return (
+                <Dialog key={item.id}>
+                  <DialogTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start h-10 relative group"
+                      onMouseEnter={() => setHoveredItem(item.id)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                    >
+                      <item.icon className={cn("w-4 h-4", item.color)} />
+                      <span className="ml-3 flex-1 text-left">{item.label}</span>
+                      {item.badge && (
+                        <Badge variant="secondary" className="ml-2 h-5 text-xs">
+                          {item.badge}
+                        </Badge>
+                      )}
+                      {hoveredItem === item.id && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-md" />
+                      )}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>知识库管理</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="flex items-center gap-4">
+                        <label className="text-sm font-medium">当前知识库</label>
+                        <Select value={知识库} onValueChange={on知识库Change}>
+                          <SelectTrigger className="w-[200px]">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="default">默认知识库</SelectItem>
+                            <SelectItem value="tech">技术文档</SelectItem>
+                            <SelectItem value="legal">法律条文</SelectItem>
+                            <SelectItem value="medical">医学资料</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <Separator />
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-medium">可用知识库列表</h4>
+                        <div className="bg-slate-50 rounded-lg p-2 space-y-2">
+                          {["默认知识库", "技术文档", "法律条文", "医学资料"].map((kb, i) => (
+                            <div key={i} className="flex items-center justify-between p-2 bg-white rounded border text-sm">
+                              <span>{kb}</span>
+                              <Badge variant="outline">Ready</Badge>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              );
+            }
+            return (
+              <Button
+                key={item.id}
+                variant="ghost"
+                className="w-full justify-start h-10 relative group"
+                onMouseEnter={() => setHoveredItem(item.id)}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <item.icon className={cn("w-4 h-4", item.color)} />
+                <span className="ml-3 flex-1 text-left">{item.label}</span>
+                {item.badge && (
+                  <Badge variant="secondary" className="ml-2 h-5 text-xs">
+                    {item.badge}
+                  </Badge>
+                )}
+                {hoveredItem === item.id && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-md" />
+                )}
+              </Button>
+            );
+          })}
         </div>
       )}
 
@@ -167,11 +233,14 @@ export function 侧边栏({
                   "w-full justify-start h-auto p-3 group relative overflow-hidden",
                   isCollapsed && "px-0 w-12 h-12",
                   activeConversationId === conversation.id && 
-                  "bg-[#E4EDFD] border border-blue-200/50"
+                  "bg-[#E4EDFD] border border-blue-200/50 dark:bg-[#2D2E30] dark:border-transparent dark:text-white"
                 )}
                 onClick={() => onConversationSelect(conversation.id)}
               >
-                <MessageSquare className="w-4 h-4 flex-shrink-0" />
+                <MessageSquare className={cn(
+                  "w-4 h-4 flex-shrink-0",
+                  activeConversationId === conversation.id ? "text-blue-600 dark:text-blue-400" : "text-muted-foreground"
+                )} />
                 {!isCollapsed && (
                   <div className="ml-3 flex-1 text-left min-w-0">
                     <div className="truncate text-sm">{conversation.title}</div>

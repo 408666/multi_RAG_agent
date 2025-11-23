@@ -1053,18 +1053,15 @@ export default function App() {
             onSettings={() => setSettingsOpen(true)}
             onHelp={() => setHelpOpen(true)}
             onDeleteConversation={handleDeleteConversation}
+            知识库={知识库}
+            on知识库Change={set知识库}
           />
 
           {/* 主聊天区域 */}
           <div className="flex-1 flex flex-col relative min-h-0">
             {/* 顶部栏 */}
             <顶部栏
-              知识库={知识库}
-              模型={模型}
-              on知识库Change={set知识库}
-              on模型Change={set模型}
-              onSettings={() => setSettingsOpen(true)}
-              onHelp={() => setHelpOpen(true)}
+              currentSessionTitle={conversations.find(c => c.id === activeConversationId)?.title}
             />
 
             {/* 顶部进度条 */}
@@ -1172,6 +1169,8 @@ export default function App() {
               pdfProcessing={pdfProcessing}
               pendingAudios={pendingAudios}
               onRemoveAudio={(id) => setPendingAudios(prev => prev.filter(audio => audio.id !== id))}
+              模型={模型}
+              on模型Change={set模型}
             />
           </div>
         </div>
